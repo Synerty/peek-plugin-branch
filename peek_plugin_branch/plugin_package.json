@@ -1,0 +1,50 @@
+{
+    "plugin": {
+        "title": "Branch Plugin",
+        "packageName": "peek_plugin_branch",
+        "version": "111.111.111",
+        "buildNumber": "#PLUGIN_BUILD#",
+        "buildDate": "#BUILD_DATE#",
+        "creator": "Synerty Pty Ltd",
+        "website": "www.synerty.com"
+    },
+    "requiresServices": [
+        "server",
+        "storage",
+        "admin",
+        "client",
+        "mobile",
+        "desktop"
+    ],
+    "server": {
+    },
+    "storage": {
+        "alembicDir": "_private/alembic"
+    },
+    "admin": {
+        "showHomeLink": true,
+        "appDir": "_private/admin-app",
+        "appModule": "branch.module#BranchModule",
+        "moduleDir": "plugin-module"
+    },
+    "client": {
+    },
+    "mobile": {
+        "showHomeLink": false,
+        "appDir": "_private/both-app",
+        "appModule": "branch.module#BranchModule",
+        "assetDir": "_private/both-assets",
+        "icon": "/assets/peek_plugin_branch/icon.png",
+        "moduleDir": "plugin-module"
+    },
+    "agent": {
+    },
+    "desktop": {
+        "showHomeLink": false,
+        "appDir": "_private/both-app",
+        "appModule": "branch.module#BranchModule",
+        "assetDir": "_private/both-assets",
+        "icon": "/assets/peek_plugin_branch/icon.png",
+        "moduleDir": "plugin-module"
+    }
+}
