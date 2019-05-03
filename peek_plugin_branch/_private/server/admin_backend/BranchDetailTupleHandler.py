@@ -1,15 +1,16 @@
 import logging
 
-from peek_plugin_branch._private.PluginNames import branchFilt
-from peek_plugin_branch._private.storage.BranchDetailTable import BranchDetailTable
 from vortex.TupleSelector import TupleSelector
 from vortex.handler.TupleDataObservableHandler import TupleDataObservableHandler
 from vortex.sqla_orm.OrmCrudHandler import OrmCrudHandler, OrmCrudHandlerExtension
 
+from peek_plugin_branch._private.PluginNames import branchFilt
+from peek_plugin_branch.tuples.BranchDetailTuple import BranchDetailTuple
+
 logger = logging.getLogger(__name__)
 
 # This dict matches the definition in the Admin angular app.
-filtKey = {"key": "admin.Edit.BranchDetailTable"}
+filtKey = {"key": "admin.Edit.BranchDetailTuple"}
 filtKey.update(branchFilt)
 
 
@@ -25,6 +26,7 @@ class __ExtUpdateObservable(OrmCrudHandlerExtension):
     it then notifies the observer.
 
     """
+
     def __init__(self, tupleDataObserver: TupleDataObservableHandler):
         self._tupleDataObserver = tupleDataObserver
 
@@ -32,7 +34,7 @@ class __ExtUpdateObservable(OrmCrudHandlerExtension):
         selector = {}
         # Copy any filter values into the selector
         # selector["lookupName"] = payloadFilt["lookupName"]
-        tupleSelector = TupleSelector(BranchDetailTable.tupleName(),
+        tupleSelector = TupleSelector(BranchDetailTuple.tupleName(),
                                       selector)
         self._tupleDataObserver.notifyOfTupleUpdate(tupleSelector)
         return True
@@ -42,10 +44,10 @@ class __ExtUpdateObservable(OrmCrudHandlerExtension):
 
 
 # This method creates an instance of the handler class.
-def makeBranchDetailTableHandler(tupleObservable, dbSessionCreator):
-    handler = __CrudHandler(dbSessionCreator, BranchDetailTable,
+def makeBranchDetailTupleHandler(tupleObservable, dbSessionCreator):
+    handler = __CrudHandler(dbSessionCreator, BranchDetailTuple,
                             filtKey, retreiveAll=True)
 
     logger.debug("Started")
-    handler.addExtension(BranchDetailTable, __ExtUpdateObservable(tupleObservable))
+    handler.addExtension(BranchDetailTuple, __ExtUpdateObservable(tupleObservable))
     return handler

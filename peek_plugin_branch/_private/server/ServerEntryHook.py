@@ -1,31 +1,17 @@
 import logging
 
-from peek_plugin_inbox.server.InboxApiABC import InboxApiABC
 from peek_plugin_base.server.PluginServerEntryHookABC import PluginServerEntryHookABC
-
-from peek_plugin_branch._private.storage import DeclarativeBase
-from peek_plugin_branch._private.storage.DeclarativeBase import loadStorageTuples
-
 from peek_plugin_base.server.PluginServerStorageEntryHookABC import \
     PluginServerStorageEntryHookABC
-
+from peek_plugin_branch._private.storage import DeclarativeBase
+from peek_plugin_branch._private.storage.DeclarativeBase import loadStorageTuples
 from peek_plugin_branch._private.tuples import loadPrivateTuples
 from peek_plugin_branch.tuples import loadPublicTuples
-
-from .TupleDataObservable import makeTupleDataObservableHandler
-
-from .TupleActionProcessor import makeTupleActionProcessorHandler
-from .controller.MainController import MainController
-
-from .admin_backend import makeAdminBackendHandlers
-
-from .agent_handlers.RpcForAgent import RpcForAgent
-
-from .ServerToAgentRpcCallExample import ServerToAgentRpcCallExample
-
 from .BranchApi import BranchApi
-
-from .ExampleUseTaskApi import ExampleUseTaskApi
+from .TupleActionProcessor import makeTupleActionProcessorHandler
+from .TupleDataObservable import makeTupleDataObservableHandler
+from .admin_backend import makeAdminBackendHandlers
+from .controller.MainController import MainController
 
 logger = logging.getLogger(__name__)
 
@@ -72,23 +58,6 @@ class ServerEntryHook(PluginServerEntryHookABC, PluginServerStorageEntryHookABC)
 
         self._loadedObjects.append(tupleObservable)
 
-        # session = self.dbSessionCreator()
-        #
-        # This will retrieve all the settings
-        # from peek_plugin_branch._private.storage.Setting import globalSetting
-        # allSettings = globalSetting(session)
-        # logger.debug(allSettings)
-        #
-        # This will retrieve the value of property1
-        # from peek_plugin_branch._private.storage.Setting import PROPERTY1
-        # value1 = globalSetting(session, key=PROPERTY1)
-        # logger.debug("value1 = %s" % value1)
-        #
-        # This will set property1
-        # globalSetting(session, key=PROPERTY1, value="new value 1")
-        # session.commit()
-        #
-        # session.close()
 
         mainController = MainController(
             dbSessionCreator=self.dbSessionCreator,
@@ -97,25 +66,9 @@ class ServerEntryHook(PluginServerEntryHookABC, PluginServerStorageEntryHookABC)
         self._loadedObjects.append(mainController)
         self._loadedObjects.append(makeTupleActionProcessorHandler(mainController))
 
-        # Initialise the RpcForAgent
-        self._loadedObjects.extend(RpcForAgent(mainController, self.dbSessionCreator)
-                                   .makeHandlers())
-
-        # Initialise and start the RPC for Server
-        self._loadedObjects.append(ServerToAgentRpcCallExample().start())
-
         # Initialise the API object that will be shared with other plugins
         self._api = BranchApi(mainController)
         self._loadedObjects.append(self._api)
-
-        # Get a reference for the Active Task
-        activeTaskApi = self.platform.getOtherPluginApi("peek_plugin_inbox")
-        assert isinstance(activeTaskApi, InboxApiABC), "Wrong activeTaskApi"
-
-        # Initialise the example code that will send the test task
-        self._loadedObjects.append(
-            ExampleUseTaskApi(mainController, activeTaskApi).start()
-        )
 
         logger.debug("Started")
 

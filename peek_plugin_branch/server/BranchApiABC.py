@@ -1,6 +1,4 @@
-from abc import ABCMeta, abstractmethod
-
-from peek_plugin_branch.tuples.DoSomethingTuple import DoSomethingTuple
+from abc import ABCMeta
 
 
 class BranchApiABC(metaclass=ABCMeta):
