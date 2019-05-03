@@ -2,9 +2,8 @@ from vortex.handler.TupleDataObservableHandler import TupleDataObservableHandler
 
 from peek_plugin_branch._private.PluginNames import branchFilt
 from peek_plugin_branch._private.PluginNames import branchObservableName
-
+from peek_plugin_branch.tuples.BranchDetailTuple import BranchDetailTuple
 from .tuple_providers.BranchDetailTupleProvider import BranchDetailTupleProvider
-from peek_plugin_branch._private.storage.BranchDetailTable import BranchDetailTable
 
 
 def makeTupleDataObservableHandler(ormSessionCreator):
@@ -23,6 +22,6 @@ def makeTupleDataObservableHandler(ormSessionCreator):
                 additionalFilt=branchFilt)
 
     # Register TupleProviders here
-    tupleObservable.addTupleProvider(BranchDetailTable.tupleName(),
+    tupleObservable.addTupleProvider(BranchDetailTuple.tupleName(),
                                      BranchDetailTupleProvider(ormSessionCreator))
     return tupleObservable

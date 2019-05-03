@@ -16,6 +16,9 @@ class BranchDetailTuple(Tuple):
     LOCATION_SERVER_BRANCH = 1
     LOCATION_LOCAL_BRANCH = 2
 
+    #: The database ID
+    id: int = TupleField()
+
     #: Model Set Key
     modelSetKey: str = TupleField()
 

@@ -1,11 +1,12 @@
- import {addTupleType, Tuple, TupleActionABC} from "@synerty/vortexjs";
+import {addTupleType, TupleActionABC} from "@synerty/vortexjs";
 import {branchTuplePrefix} from "../PluginNames";
+import {BranchDetailTuple} from "../../BranchDetailTuple";
 
 @addTupleType
 export class CreateBranchActionTuple extends TupleActionABC {
     static readonly tupleName = branchTuplePrefix + "CreateBranchActionTuple";
 
-    branchDetailId: number;
+    branchDetail: BranchDetailTuple;
     offset: number;
 
     constructor() {

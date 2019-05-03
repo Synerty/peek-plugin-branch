@@ -33,20 +33,32 @@ class MainController(TupleActionProcessorDelegateABC):
     def _processCreateBranch(self, action: CreateBranchActionTuple):
         try:
             # Perform update using SQLALchemy
-            session = self._dbSessionCreator()
-            row = (session.query(BranchDetailTable)
-                   .filter(BranchDetailTable.id == action.branchDetailId)
-                   .one())
-            row.int1 += action.offset
-            session.commit()
+            dbSession = self._dbSessionCreator()
 
-            logger.debug("Int changed by %u", action.offset)
+            dbItem = None
+            mergeItem = BranchDetailTable.fromTuple(action.branchDetail)
+
+            if action.branchDetail.id is not None:
+                rows = dbSession.query(BranchDetailTable) \
+                    .filter(BranchDetailTable.id == action.branchDetailId) \
+                    .all()
+                if rows:
+                    dbItem = rows[0]
+                    dbItem.merge(mergeItem)
+
+            if not dbItem:
+                newItem = BranchDetailTable.fromTuple(action.branchDetail)
+                dbSession.add(newItem)
+
+            dbSession.commit()
 
             # Notify the observer of the update
             # This tuple selector must exactly match what the UI observes
-            tupleSelector = TupleSelector(BranchDetailTable.tupleName(), {})
+            tupleSelector = TupleSelector(BranchDetailTable.tupleName(), dict(
+                modelSetKey=newItem.modelSetKey
+            ))
             self._tupleObservable.notifyOfTupleUpdate(tupleSelector)
 
         finally:
-            # Always close the session after we create it
-            session.close()
+            # Always close the dbSession after we create it
+            dbSession.close()

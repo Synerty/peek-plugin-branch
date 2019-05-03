@@ -11,6 +11,7 @@ from peek_plugin_branch._private.storage.BranchDetailTable import BranchDetailTa
 
 logger = logging.getLogger(__name__)
 
+
 class BranchDetailTupleProvider(TuplesProviderABC):
     def __init__(self, ormSessionCreator):
         self._ormSessionCreator = ormSessionCreator
@@ -18,19 +19,18 @@ class BranchDetailTupleProvider(TuplesProviderABC):
     @deferToThreadWrapWithLogger(logger)
     def makeVortexMsg(self, filt: dict,
                       tupleSelector: TupleSelector) -> Union[Deferred, bytes]:
-        # Potential filters can be placed here.
-        # val1 = tupleSelector.selector["val1"]
+        modelSetKey = tupleSelector.selector["modelSetKey"]
 
         session = self._ormSessionCreator()
         try:
-            tasks = (session.query(BranchDetailTable)
-                # Potentially filter the results
-                # .filter(BranchDetailTable.val1 == val1)
+            ormItems = session.query(BranchDetailTable) \
+                .filter(BranchDetailTable.modelSetKey == modelSetKey) \
                 .all()
-            )
+
+            items = [o.toTuple() for o in ormItems]
 
             # Create the vortex message
-            return Payload(filt, tuples=tasks).makePayloadEnvelope().toVortexMsg()
+            return Payload(filt, tuples=items).makePayloadEnvelope().toVortexMsg()
 
         finally:
             session.close()

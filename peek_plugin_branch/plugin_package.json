@@ -1,6 +1,6 @@
 {
     "plugin": {
-        "title": "Branch Plugin",
+        "title": "Model Branches",
         "packageName": "peek_plugin_branch",
         "version": "111.111.111",
         "buildNumber": "#PLUGIN_BUILD#",
@@ -35,7 +35,19 @@
         "appModule": "branch.module#BranchModule",
         "assetDir": "_private/both-assets",
         "icon": "/assets/peek_plugin_branch/icon.png",
-        "moduleDir": "plugin-module"
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "_private/services/PrivateBranchTupleService",
+                "class": "PrivateBranchTupleService",
+                "persistent": true
+            },
+            {
+                "file": "BranchService",
+                "class": "BranchService",
+                "persistent": true
+            }
+        ]
     },
     "agent": {
     },
@@ -45,6 +57,18 @@
         "appModule": "branch.module#BranchModule",
         "assetDir": "_private/both-assets",
         "icon": "/assets/peek_plugin_branch/icon.png",
-        "moduleDir": "plugin-module"
+        "moduleDir": "plugin-module",
+        "rootServices": [
+            {
+                "file": "_private/services/PrivateBranchTupleService",
+                "class": "PrivateBranchTupleService",
+                "persistent": true
+            },
+            {
+                "file": "BranchService",
+                "class": "BranchService",
+                "persistent": true
+            }
+        ]
     }
 }
