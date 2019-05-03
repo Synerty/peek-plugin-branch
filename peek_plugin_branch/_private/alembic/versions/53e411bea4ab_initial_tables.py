@@ -28,7 +28,7 @@ def upgrade():
     sa.Column('location', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('comment', sa.String(), nullable=True),
-    sa.Column('user', sa.String(), nullable=False),
+    sa.Column('userName', sa.String(), nullable=False),
     sa.Column('updatedDate', sa.DateTime(timezone=True), nullable=False),
     sa.Column('createdDate', sa.DateTime(timezone=True), nullable=False),
     sa.PrimaryKeyConstraint('id'),

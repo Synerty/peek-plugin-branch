@@ -19,7 +19,7 @@ class BranchDetailTable(DeclarativeBase):
 
     comment = Column(String)
 
-    user = Column(String, nullable=False)
+    userName = Column(String, nullable=False)
 
     updatedDate = Column(DateTime(timezone=True), nullable=False)
 

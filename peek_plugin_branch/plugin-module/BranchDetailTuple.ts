@@ -45,11 +45,11 @@ export class BranchDetailTuple extends Tuple {
      */
     comment: string;
 
-    /** User
+    /** userName
      *
      * The location of this branch
      */
-    user: string;
+    userName: string;
 
     /** Updated Date
      *

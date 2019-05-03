@@ -45,7 +45,7 @@ class BranchDetailTuple(Tuple):
     #: User
     # 
     # The location of this branch
-    user: str = TupleField()
+    userName: str = TupleField()
 
     #: Updated Date
     # 
