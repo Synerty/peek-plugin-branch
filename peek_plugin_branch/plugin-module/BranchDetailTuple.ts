@@ -15,7 +15,14 @@ export enum BranchLocation {
 
 @addTupleType
 export class BranchDetailTuple extends Tuple {
-    public static readonly tupleName = branchTuplePrefix + "BranchDetailTable";
+    public static readonly tupleName = branchTuplePrefix + "BranchDetailTuple";
+
+
+    /** The database ID
+     *
+     * Consider this field private
+     */
+    id: number;
 
 
     /** Model Set Key */

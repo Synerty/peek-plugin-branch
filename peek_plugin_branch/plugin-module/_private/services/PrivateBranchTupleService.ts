@@ -17,7 +17,7 @@ import {
     branchFilt,
     branchObservableName,
     branchTupleOfflineServiceName
-} from "./PluginNames";
+} from "../PluginNames";
 
 
 export function tupleDataObservableNameServiceFactory() {

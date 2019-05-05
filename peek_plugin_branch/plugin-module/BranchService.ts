@@ -2,7 +2,7 @@ import {ComponentLifecycleEventEmitter, TupleSelector} from "@synerty/vortexjs";
 import {branchTuplePrefix} from "./_private/PluginNames";
 import {Injectable} from "@angular/core";
 import {BranchDetailTuple} from "./BranchDetailTuple";
-import {PrivateBranchTupleService} from "./_private/PrivateBranchTupleService";
+import {PrivateBranchTupleService} from "./_private/services/PrivateBranchTupleService";
 import {CreateBranchActionTuple} from "./_private";
 
 
@@ -15,17 +15,20 @@ export class BranchService extends ComponentLifecycleEventEmitter {
         super()
     }
 
-    createBranch(newBranch: BranchDetailTuple) {
+    createBranch(newBranch: BranchDetailTuple): Promise<void> {
         let action = new CreateBranchActionTuple();
         action.branchDetail = newBranch;
-        this.tupleService.offlineAction.push(action);
+        let promise: any = this.tupleService.offlineAction.pushAction(action);
+        return promise;
     }
 
     branches(modelSetKey: string): Promise<BranchDetailTuple[]> {
         let ts = new TupleSelector(BranchDetailTuple.tupleName, {
-            modelSetKey:modelSetKey
+            modelSetKey: modelSetKey
         });
-        return this.tupleService.offlineObserver.promiseFromTupleSelector(ts);
+        let promise: any = this.tupleService.offlineObserver
+            .promiseFromTupleSelector(ts);
+        return promise;
 
     }
 }

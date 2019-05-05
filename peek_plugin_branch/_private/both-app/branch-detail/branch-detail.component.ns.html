@@ -7,23 +7,23 @@
     </GridLayout>
 
     <ListView [items]="branchDetails">
-        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-            <StackLayout [class.odd]="odd" [class.even]="even">
-                <GridLayout columns="4*, 1*" rows="auto" width="*">
-                    <!-- String -->
-                    <Label class="h3 peek-field-data-text" row="0" col="0"
-                           textWrap="true"
-                           [text]="item.string1"></Label>
+<!--        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">-->
+<!--            <StackLayout [class.odd]="odd" [class.even]="even">-->
+<!--                <GridLayout columns="4*, 1*" rows="auto" width="*">-->
+<!--                    &lt;!&ndash; String &ndash;&gt;-->
+<!--                    <Label class="h3 peek-field-data-text" row="0" col="0"-->
+<!--                           textWrap="true"-->
+<!--                           [text]="item.string1"></Label>-->
 
-                    <!-- Int -->
-                    <Label class="h3 peek-field-data-text" row="0" col="1"
-                           [text]="item.int1"></Label>
+<!--                    &lt;!&ndash; Int &ndash;&gt;-->
+<!--                    <Label class="h3 peek-field-data-text" row="0" col="1"-->
+<!--                           [text]="item.int1"></Label>-->
 
-                </GridLayout>
-                <Button text="Toggle Caps" (tap)="toggleUpperCicked(item)"></Button>
-                <Button text="Increment Int" (tap)="incrementCicked(item)"></Button>
-                <Button text="Decrement Int" (tap)="decrementCicked(item)"></Button>
-            </StackLayout>
-        </ng-template>
+<!--                </GridLayout>-->
+<!--                <Button text="Toggle Caps" (tap)="toggleUpperCicked(item)"></Button>-->
+<!--                <Button text="Increment Int" (tap)="incrementCicked(item)"></Button>-->
+<!--                <Button text="Decrement Int" (tap)="decrementCicked(item)"></Button>-->
+<!--            </StackLayout>-->
+<!--        </ng-template>-->
     </ListView>
 </StackLayout>

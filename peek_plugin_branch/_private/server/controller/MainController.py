@@ -10,6 +10,7 @@ from vortex.handler.TupleDataObservableHandler import TupleDataObservableHandler
 from peek_plugin_branch._private.storage.BranchDetailTable import BranchDetailTable
 from peek_plugin_branch._private.tuples.CreateBranchActionTuple import \
     CreateBranchActionTuple
+from peek_plugin_branch.tuples.BranchDetailTuple import BranchDetailTuple
 
 logger = logging.getLogger(__name__)
 
@@ -54,7 +55,7 @@ class MainController(TupleActionProcessorDelegateABC):
 
             # Notify the observer of the update
             # This tuple selector must exactly match what the UI observes
-            tupleSelector = TupleSelector(BranchDetailTable.tupleName(), dict(
+            tupleSelector = TupleSelector(BranchDetailTuple.tupleName(), dict(
                 modelSetKey=newItem.modelSetKey
             ))
             self._tupleObservable.notifyOfTupleUpdate(tupleSelector)
