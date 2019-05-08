@@ -65,7 +65,7 @@ export function tupleOfflineStorageNameServiceFactory() {
 // Define the child routes for this plugin
 export const pluginRoutes: Routes = [
     {
-        path: 'stringint',
+        path: 'branchdetails',
         component: BranchDetailComponent
     },
     {
