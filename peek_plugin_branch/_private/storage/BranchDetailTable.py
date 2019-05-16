@@ -13,8 +13,6 @@ class BranchDetailTable(DeclarativeBase):
 
     key = Column(String, nullable=False)
 
-    location = Column(Integer, nullable=False)
-
     name = Column(String, nullable=False)
 
     comment = Column(String)

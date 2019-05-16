@@ -60,6 +60,9 @@ class MainController(TupleActionProcessorDelegateABC):
             ))
             self._tupleObservable.notifyOfTupleUpdate(tupleSelector)
 
+        except Exception as e:
+            logger.exception(e)
+
         finally:
             # Always close the dbSession after we create it
             dbSession.close()

@@ -27,11 +27,6 @@ class BranchDetailTuple(Tuple):
     # The key of this branch
     key: str = TupleField()
 
-    #: Location
-    # 
-    # The location of this branch
-    location: int = TupleField()
-
     #: Name
     # 
     # The location of this branch
