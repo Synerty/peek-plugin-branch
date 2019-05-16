@@ -31,4 +31,16 @@ export class BranchService extends ComponentLifecycleEventEmitter {
         return promise;
 
     }
+
+    getBranch(modelSetKey: string, key: string): Promise<BranchDetailTuple | null> {
+        let ts = new TupleSelector(BranchDetailTuple.tupleName, {
+            modelSetKey: modelSetKey
+        });
+        let promise: any = this.tupleService.offlineObserver
+            .promiseFromTupleSelector(ts)
+            .then((branches: BranchDetailTuple[]) => {
+                return branches.filter(b => b.key == key)[0];
+            });
+        return promise;
+    }
 }
