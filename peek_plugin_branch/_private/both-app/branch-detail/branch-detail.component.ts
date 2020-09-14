@@ -1,34 +1,24 @@
-import {Component} from "@angular/core";
-import {Router} from "@angular/router";
-import {BranchDetailTuple, branchBaseUrl} from "@peek/peek_plugin_branch/_private";
-
-import {
-    ComponentLifecycleEventEmitter,
-    TupleDataObserverService,
-    TupleSelector
-} from "@synerty/vortexjs";
-
-import {TupleActionPushService} from "@synerty/vortexjs";
-
-import {
-    CreateBranchActionTuple
-} from "@peek/peek_plugin_branch/_private";
-
+import { Component } from "@angular/core"
+import { Router } from "@angular/router"
+import { branchBaseUrl, BranchDetailTuple } from "@peek/peek_plugin_branch/_private"
+import { NgLifeCycleEvents } from "@synerty/peek-plugin-base-js"
+import { TupleActionPushService, TupleDataObserverService } from "@synerty/vortexjs"
 
 @Component({
-    selector: 'plugin-branch-branch-detail',
-    templateUrl: 'branch-detail.component.mweb.html',
+    selector: "plugin-branch-branch-detail",
+    templateUrl: "branch-detail.component.mweb.html",
     moduleId: module.id
 })
-export class BranchDetailComponent extends ComponentLifecycleEventEmitter {
-
-    branchDetails: Array<BranchDetailTuple> = [];
-
-    constructor(private actionService: TupleActionPushService,
-                private tupleDataObserver: TupleDataObserverService,
-                private router: Router) {
-        super();
-
+export class BranchDetailComponent extends NgLifeCycleEvents {
+    branchDetails: Array<BranchDetailTuple> = []
+    
+    constructor(
+        private actionService: TupleActionPushService,
+        private tupleDataObserver: TupleDataObserverService,
+        private router: Router
+    ) {
+        super()
+        
         // // Create the TupleSelector to tell the observable what data we want
         // let selector = {};
         // // Add any filters of the data here
@@ -43,13 +33,11 @@ export class BranchDetailComponent extends ComponentLifecycleEventEmitter {
         //     });
         //
         // // unsubscribe when this component is destroyed
-        // // This is a feature of ComponentLifecycleEventEmitter
+        // // This is a feature of NgLifeCycleEvents
         // this.onDestroyEvent.subscribe(() => sup.unsubscribe());
-
     }
-
+    
     mainClicked() {
-        this.router.navigate([branchBaseUrl]);
+        this.router.navigate([branchBaseUrl])
     }
-
 }
