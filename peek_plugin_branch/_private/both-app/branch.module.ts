@@ -6,7 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { RouterModule } from "@angular/router";
 import { BranchComponent } from "./branch.component";
-import { branchTupleOfflineServiceName } from "@peek/peek_plugin_branch/_private/PluginNames";
+import { branchTupleOfflineServiceName } from "@_peek/peek_plugin_branch/_private/PluginNames";
 import {
     TupleOfflineStorageNameService,
     TupleOfflineStorageService,
@@ -21,8 +21,8 @@ import { BranchDetailComponent } from "./branch-detail/branch-detail.component";
 import {
     branchObservableName,
     branchFilt,
-} from "@peek/peek_plugin_branch/_private/PluginNames";
-import { branchActionProcessorName } from "@peek/peek_plugin_branch/_private";
+} from "@_peek/peek_plugin_branch/_private/PluginNames";
+import { branchActionProcessorName } from "@_peek/peek_plugin_branch/_private";
 
 export function tupleActionPushNameServiceFactory() {
     return new TupleActionPushNameService(

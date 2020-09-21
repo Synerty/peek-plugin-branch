@@ -1,6 +1,6 @@
 import { Component } from "@angular/core"
 import { Router } from "@angular/router"
-import { branchBaseUrl, BranchDetailTuple } from "@peek/peek_plugin_branch/_private"
+import { branchBaseUrl, BranchDetailTuple } from "@_peek/peek_plugin_branch/_private"
 import { NgLifeCycleEvents } from "@synerty/peek-plugin-base-js"
 import { TupleActionPushService, TupleDataObserverService } from "@synerty/vortexjs"
 

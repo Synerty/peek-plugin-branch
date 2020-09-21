@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import { BalloonMsgService, NgLifeCycleEvents } from "@synerty/peek-plugin-base-js"
 import { extend, TupleLoader, VortexService } from "@synerty/vortexjs"
-import { BranchDetailTuple, branchFilt } from "@peek/peek_plugin_branch/_private"
+import { BranchDetailTuple, branchFilt } from "@_peek/peek_plugin_branch/_private"
 
 @Component({
     selector: "pl-branch-edit-branch-detail",
