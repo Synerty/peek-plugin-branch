@@ -6,8 +6,7 @@ import { TupleActionPushService, TupleDataObserverService } from "@synerty/vorte
 
 @Component({
     selector: "plugin-branch-branch-detail",
-    templateUrl: "branch-detail.component.mweb.html",
-    moduleId: module.id
+    templateUrl: "branch-detail.component.mweb.html"
 })
 export class BranchDetailComponent extends NgLifeCycleEvents {
     branchDetails: Array<BranchDetailTuple> = []
