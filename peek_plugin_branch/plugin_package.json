@@ -12,9 +12,8 @@
         "server",
         "storage",
         "admin",
-        "client",
-        "mobile",
-        "desktop"
+        "field",
+        "office"
     ],
     "server": {
     },
@@ -27,9 +26,8 @@
         "appModule": "branch.module#BranchModule",
         "moduleDir": "plugin-module"
     },
-    "client": {
-    },
-    "mobile": {
+
+    "field": {
         "showHomeLink": false,
         "appDir": "_private/both-app",
         "appModule": "branch.module#BranchModule",
@@ -51,7 +49,7 @@
     },
     "agent": {
     },
-    "desktop": {
+    "office": {
         "showHomeLink": false,
         "appDir": "_private/both-app",
         "appModule": "branch.module#BranchModule",
