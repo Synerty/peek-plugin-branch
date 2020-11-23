@@ -9,13 +9,13 @@
         "website": "www.synerty.com"
     },
     "requiresServices": [
-        "server",
+        "logic",
         "storage",
         "admin",
         "field",
         "office"
     ],
-    "server": {
+    "logic": {
     },
     "storage": {
         "alembicDir": "_private/alembic"
