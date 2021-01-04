@@ -20,6 +20,5 @@ class BranchApi(BranchApiABC):
     #
     #     return DoSomethingTuple(result="SUCCESS : " + somethingsDescription)
 
-
     def shutdown(self):
         pass

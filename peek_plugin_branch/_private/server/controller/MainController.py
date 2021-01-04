@@ -8,8 +8,9 @@ from vortex.handler.TupleActionProcessor import TupleActionProcessorDelegateABC
 from vortex.handler.TupleDataObservableHandler import TupleDataObservableHandler
 
 from peek_plugin_branch._private.storage.BranchDetailTable import BranchDetailTable
-from peek_plugin_branch._private.tuples.CreateBranchActionTuple import \
-    CreateBranchActionTuple
+from peek_plugin_branch._private.tuples.CreateBranchActionTuple import (
+    CreateBranchActionTuple,
+)
 from peek_plugin_branch.tuples.BranchDetailTuple import BranchDetailTuple
 
 logger = logging.getLogger(__name__)
@@ -40,9 +41,11 @@ class MainController(TupleActionProcessorDelegateABC):
             mergeItem = BranchDetailTable.fromTuple(action.branchDetail)
 
             if action.branchDetail.id is not None:
-                rows = dbSession.query(BranchDetailTable) \
-                    .filter(BranchDetailTable.id == action.branchDetailId) \
+                rows = (
+                    dbSession.query(BranchDetailTable)
+                    .filter(BranchDetailTable.id == action.branchDetailId)
                     .all()
+                )
                 if rows:
                     dbItem = rows[0]
                     dbItem.merge(mergeItem)
@@ -55,9 +58,9 @@ class MainController(TupleActionProcessorDelegateABC):
 
             # Notify the observer of the update
             # This tuple selector must exactly match what the UI observes
-            tupleSelector = TupleSelector(BranchDetailTuple.tupleName(), dict(
-                modelSetKey=newItem.modelSetKey
-            ))
+            tupleSelector = TupleSelector(
+                BranchDetailTuple.tupleName(), dict(modelSetKey=newItem.modelSetKey)
+            )
             self._tupleObservable.notifyOfTupleUpdate(tupleSelector)
 
         except Exception as e:

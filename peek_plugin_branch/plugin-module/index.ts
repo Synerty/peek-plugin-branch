@@ -1,2 +1,2 @@
-export {BranchService} from "./BranchService";
-export {BranchDetailTuple} from "./BranchDetailTuple";
+export { BranchService } from "./BranchService"
+export { BranchDetailTuple } from "./BranchDetailTuple"

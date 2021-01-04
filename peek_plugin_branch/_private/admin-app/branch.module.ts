@@ -1,22 +1,21 @@
-import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {NgModule} from "@angular/core";
-import {Routes, RouterModule} from "@angular/router";
-import {EditBranchDetailComponent} from "./edit-branch-detail-table/edit.component";
-import {EditSettingComponent} from "./edit-setting-table/edit.component";
-
+import { CommonModule } from "@angular/common"
+import { FormsModule } from "@angular/forms"
+import { NgModule } from "@angular/core"
+import { Routes, RouterModule } from "@angular/router"
+import { EditBranchDetailComponent } from "./edit-branch-detail-table/edit.component"
+import { EditSettingComponent } from "./edit-setting-table/edit.component"
 
 // Import our components
-import {BranchComponent} from "./branch.component";
+import { BranchComponent } from "./branch.component"
 
 // Define the routes for this Angular module
 export const pluginRoutes: Routes = [
     {
-        path: '',
+        path: "",
         component: BranchComponent
     }
 
-];
+]
 
 // Define the module
 @NgModule({

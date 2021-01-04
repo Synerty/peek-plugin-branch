@@ -7,7 +7,7 @@ from .tuple_providers.BranchDetailTupleProvider import BranchDetailTupleProvider
 
 
 def makeTupleDataObservableHandler(ormSessionCreator):
-    """" Make Tuple Data Observable Handler
+    """ " Make Tuple Data Observable Handler
 
     This method creates the observable object, registers the tuple providers and then
     returns it.
@@ -18,10 +18,11 @@ def makeTupleDataObservableHandler(ormSessionCreator):
 
     """
     tupleObservable = TupleDataObservableHandler(
-                observableName=branchObservableName,
-                additionalFilt=branchFilt)
+        observableName=branchObservableName, additionalFilt=branchFilt
+    )
 
     # Register TupleProviders here
-    tupleObservable.addTupleProvider(BranchDetailTuple.tupleName(),
-                                     BranchDetailTupleProvider(ormSessionCreator))
+    tupleObservable.addTupleProvider(
+        BranchDetailTuple.tupleName(), BranchDetailTupleProvider(ormSessionCreator)
+    )
     return tupleObservable

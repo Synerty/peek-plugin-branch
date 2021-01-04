@@ -5,7 +5,7 @@ from peek_plugin_branch.tuples.BranchDetailTuple import BranchDetailTuple
 
 
 class BranchDetailTable(DeclarativeBase):
-    __tablename__ = 'BranchDetail'
+    __tablename__ = "BranchDetail"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
@@ -30,7 +30,7 @@ class BranchDetailTable(DeclarativeBase):
         return branch
 
     @staticmethod
-    def fromTuple(inTuple: BranchDetailTuple) -> 'BranchDetailTable':
+    def fromTuple(inTuple: BranchDetailTuple) -> "BranchDetailTable":
         branch = BranchDetailTable()
         for fieldName in BranchDetailTuple.tupleFieldNames():
             setattr(branch, fieldName, getattr(inTuple, fieldName))

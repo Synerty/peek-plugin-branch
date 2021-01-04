@@ -1,12 +1,12 @@
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core"
 
 @Component({
-    selector: 'branch-admin',
-    templateUrl: 'branch.component.html'
+    selector: "branch-admin",
+    templateUrl: "branch.component.html"
 })
-export class BranchComponent  implements OnInit {
-
+export class BranchComponent implements OnInit {
+    
     ngOnInit() {
-
+    
     }
 }

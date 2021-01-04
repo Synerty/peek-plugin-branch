@@ -17,15 +17,18 @@ class BranchDetailTupleProvider(TuplesProviderABC):
         self._ormSessionCreator = ormSessionCreator
 
     @deferToThreadWrapWithLogger(logger)
-    def makeVortexMsg(self, filt: dict,
-                      tupleSelector: TupleSelector) -> Union[Deferred, bytes]:
+    def makeVortexMsg(
+        self, filt: dict, tupleSelector: TupleSelector
+    ) -> Union[Deferred, bytes]:
         modelSetKey = tupleSelector.selector["modelSetKey"]
 
         session = self._ormSessionCreator()
         try:
-            ormItems = session.query(BranchDetailTable) \
-                .filter(BranchDetailTable.modelSetKey == modelSetKey) \
+            ormItems = (
+                session.query(BranchDetailTable)
+                .filter(BranchDetailTable.modelSetKey == modelSetKey)
                 .all()
+            )
 
             items = [o.toTuple() for o in ormItems]
 

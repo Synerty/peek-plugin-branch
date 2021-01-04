@@ -1,8 +1,9 @@
 import logging
 
 from peek_plugin_base.server.PluginLogicEntryHookABC import PluginLogicEntryHookABC
-from peek_plugin_base.server.PluginServerStorageEntryHookABC import \
-    PluginServerStorageEntryHookABC
+from peek_plugin_base.server.PluginServerStorageEntryHookABC import (
+    PluginServerStorageEntryHookABC,
+)
 from peek_plugin_branch._private.storage import DeclarativeBase
 from peek_plugin_branch._private.storage.DeclarativeBase import loadStorageTuples
 from peek_plugin_branch._private.tuples import loadPrivateTuples
@@ -28,7 +29,7 @@ class LogicEntryHook(PluginLogicEntryHookABC, PluginServerStorageEntryHookABC):
         self._api = None
 
     def load(self) -> None:
-        """ Load
+        """Load
 
         This will be called when the plugin is loaded, just after the db is migrated.
         Place any custom initialiastion steps here.
@@ -44,7 +45,7 @@ class LogicEntryHook(PluginLogicEntryHookABC, PluginServerStorageEntryHookABC):
         return DeclarativeBase.metadata
 
     def start(self):
-        """ Start
+        """Start
 
         This will be called when the plugin is loaded, just after the db is migrated.
         Place any custom initialiastion steps here.
@@ -54,14 +55,14 @@ class LogicEntryHook(PluginLogicEntryHookABC, PluginServerStorageEntryHookABC):
         tupleObservable = makeTupleDataObservableHandler(self.dbSessionCreator)
 
         self._loadedObjects.extend(
-            makeAdminBackendHandlers(tupleObservable, self.dbSessionCreator))
+            makeAdminBackendHandlers(tupleObservable, self.dbSessionCreator)
+        )
 
         self._loadedObjects.append(tupleObservable)
 
-
         mainController = MainController(
-            dbSessionCreator=self.dbSessionCreator,
-            tupleObservable=tupleObservable)
+            dbSessionCreator=self.dbSessionCreator, tupleObservable=tupleObservable
+        )
 
         self._loadedObjects.append(mainController)
         self._loadedObjects.append(makeTupleActionProcessorHandler(mainController))
@@ -73,7 +74,7 @@ class LogicEntryHook(PluginLogicEntryHookABC, PluginServerStorageEntryHookABC):
         logger.debug("Started")
 
     def stop(self):
-        """ Stop
+        """Stop
 
         This method is called by the platform to tell the peek app to shutdown and stop
         everything it's doing
@@ -97,8 +98,8 @@ class LogicEntryHook(PluginLogicEntryHookABC, PluginServerStorageEntryHookABC):
 
     @property
     def publishedServerApi(self) -> object:
-        """ Published Server API
-    
+        """Published Server API
+
         :return  class that implements the API that can be used by other Plugins on this
         platform service.
         """

@@ -26,7 +26,6 @@
         "appModule": "branch.module#BranchModule",
         "moduleDir": "plugin-module"
     },
-
     "field": {
         "showHomeLink": false,
         "appDir": "_private/both-app",
