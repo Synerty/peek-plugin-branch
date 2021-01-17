@@ -4,8 +4,8 @@ import {
     branchBaseUrl,
     BranchDetailTuple
 } from "@peek/peek_plugin_branch/_private"
-import { NgLifeCycleEvents } from "@synerty/peek-plugin-base-js"
 import {
+    NgLifeCycleEvents,
     TupleActionPushService,
     TupleDataObserverService
 } from "@synerty/vortexjs"

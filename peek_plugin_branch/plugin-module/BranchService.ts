@@ -1,10 +1,9 @@
-import { TupleSelector } from "@synerty/vortexjs"
+import { NgLifeCycleEvents, TupleSelector } from "@synerty/vortexjs"
 import { branchTuplePrefix } from "./_private/PluginNames"
 import { Injectable } from "@angular/core"
 import { BranchDetailTuple } from "./BranchDetailTuple"
 import { PrivateBranchTupleService } from "./_private/services/PrivateBranchTupleService"
 import { CreateBranchActionTuple } from "./_private"
-import { NgLifeCycleEvents } from "@synerty/peek-plugin-base-js"
 
 @Injectable()
 export class BranchService extends NgLifeCycleEvents {
