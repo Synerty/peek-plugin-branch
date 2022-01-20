@@ -1,29 +1,29 @@
-import { Component } from "@angular/core"
-import { Router } from "@angular/router"
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import {
     branchBaseUrl,
-    BranchDetailTuple
-} from "@peek/peek_plugin_branch/_private"
+    BranchDetailTuple,
+} from "@peek/peek_plugin_branch/_private";
 import {
     NgLifeCycleEvents,
     TupleActionPushService,
-    TupleDataObserverService
-} from "@synerty/vortexjs"
+    TupleDataObserverService,
+} from "@synerty/vortexjs";
 
 @Component({
     selector: "plugin-branch-branch-detail",
-    templateUrl: "branch-detail.component.mweb.html"
+    templateUrl: "branch-detail.component.mweb.html",
 })
 export class BranchDetailComponent extends NgLifeCycleEvents {
-    branchDetails: Array<BranchDetailTuple> = []
-    
+    branchDetails: Array<BranchDetailTuple> = [];
+
     constructor(
         private actionService: TupleActionPushService,
         private tupleDataObserver: TupleDataObserverService,
         private router: Router
     ) {
-        super()
-        
+        super();
+
         // // Create the TupleSelector to tell the observable what data we want
         // let selector = {};
         // // Add any filters of the data here
@@ -41,8 +41,8 @@ export class BranchDetailComponent extends NgLifeCycleEvents {
         // // This is a feature of NgLifeCycleEvents
         // this.onDestroyEvent.subscribe(() => sup.unsubscribe());
     }
-    
+
     mainClicked() {
-        this.router.navigate([branchBaseUrl])
+        this.router.navigate([branchBaseUrl]);
     }
 }

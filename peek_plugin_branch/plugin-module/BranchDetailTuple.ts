@@ -1,56 +1,56 @@
-import { addTupleType, Tuple } from "@synerty/vortexjs"
-import { branchTuplePrefix } from "./_private/PluginNames"
+import { addTupleType, Tuple } from "@synerty/vortexjs";
+import { branchTuplePrefix } from "./_private/PluginNames";
 
 @addTupleType
 export class BranchDetailTuple extends Tuple {
-    public static readonly tupleName = branchTuplePrefix + "BranchDetailTuple"
-    
+    public static readonly tupleName = branchTuplePrefix + "BranchDetailTuple";
+
     /** The database ID
      *
      * Consider this field private
      */
-    id: number
-    
+    id: number;
+
     /** Model Set Key */
-    modelSetKey: string
-    
+    modelSetKey: string;
+
     /** Key
      *
      * The key of this branch
      */
-    key: string
-    
+    key: string;
+
     /** Name
      *
      * The location of this branch
      */
-    name: string
-    
+    name: string;
+
     /** Comment
      *
      * The location of this branch
      */
-    comment: string
-    
+    comment: string;
+
     /** userName
      *
      * The location of this branch
      */
-    userName: string
-    
+    userName: string;
+
     /** Updated Date
      *
      * The location of this branch
      */
-    updatedDate: Date
-    
+    updatedDate: Date;
+
     /** Created Date
      *
      * The location of this branch
      */
-    createdDate: Date
-    
+    createdDate: Date;
+
     constructor() {
-        super(BranchDetailTuple.tupleName)
+        super(BranchDetailTuple.tupleName);
     }
 }

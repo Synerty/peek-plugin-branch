@@ -8,15 +8,8 @@
         "creator": "Synerty Pty Ltd",
         "website": "www.synerty.com"
     },
-    "requiresServices": [
-        "logic",
-        "storage",
-        "admin",
-        "field",
-        "office"
-    ],
-    "logic": {
-    },
+    "requiresServices": ["logic", "storage", "admin", "field", "office"],
+    "logic": {},
     "storage": {
         "alembicDir": "_private/alembic"
     },
@@ -46,8 +39,7 @@
             }
         ]
     },
-    "agent": {
-    },
+    "agent": {},
     "office": {
         "showHomeLink": false,
         "appDir": "_private/both-app",
