@@ -1,6 +1,7 @@
 import { NgLifeCycleEvents, TupleSelector } from "@synerty/vortexjs";
 import { branchTuplePrefix } from "./_private/PluginNames";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { BranchDetailTuple } from "./BranchDetailTuple";
 import { PrivateBranchTupleService } from "./_private/services/PrivateBranchTupleService";
 import { CreateBranchActionTuple } from "./_private";
@@ -27,6 +28,15 @@ export class BranchService extends NgLifeCycleEvents {
         let promise: any =
             this.tupleService.offlineObserver.promiseFromTupleSelector(ts);
         return promise;
+    }
+
+    branches$(modelSetKey: string): Observable<BranchDetailTuple[]> {
+        let ts = new TupleSelector(BranchDetailTuple.tupleName, {
+            modelSetKey: modelSetKey,
+        });
+        return <Observable<BranchDetailTuple[]>>(
+            this.tupleService.offlineObserver.subscribeToTupleSelector(ts)
+        );
     }
 
     getBranch(
