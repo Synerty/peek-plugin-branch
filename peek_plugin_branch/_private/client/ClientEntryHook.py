@@ -1,13 +1,17 @@
 import logging
 
-from peek_plugin_base.client.PluginClientEntryHookABC import PluginClientEntryHookABC
+from peek_plugin_base.client.PluginClientEntryHookABC import (
+    PluginClientEntryHookABC,
+)
 
 from .DeviceTupleDataObservableProxy import makeDeviceTupleDataObservableProxy
 
 from peek_plugin_branch._private.tuples import loadPrivateTuples
 from peek_plugin_branch.tuples import loadPublicTuples
 
-from peek_plugin_branch._private.storage.DeclarativeBase import loadStorageTuples
+from peek_plugin_branch._private.storage.DeclarativeBase import (
+    loadStorageTuples,
+)
 
 from .DeviceTupleProcessorActionProxy import makeTupleActionProcessorProxy
 
@@ -16,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 class ClientEntryHook(PluginClientEntryHookABC):
     def __init__(self, *args, **kwargs):
-        """" Constructor """
+        """ " Constructor"""
         # Call the base classes constructor
         PluginClientEntryHookABC.__init__(self, *args, **kwargs)
 

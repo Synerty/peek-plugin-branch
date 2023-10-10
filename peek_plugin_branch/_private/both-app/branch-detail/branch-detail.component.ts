@@ -20,7 +20,7 @@ export class BranchDetailComponent extends NgLifeCycleEvents {
     constructor(
         private actionService: TupleActionPushService,
         private tupleDataObserver: TupleDataObserverService,
-        private router: Router
+        private router: Router,
     ) {
         super();
 

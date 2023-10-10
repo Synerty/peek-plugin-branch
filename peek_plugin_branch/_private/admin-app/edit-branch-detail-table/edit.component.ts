@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { BalloonMsgService } from "@synerty/peek-plugin-base-js";
 import {
-    extend,
     NgLifeCycleEvents,
     TupleLoader,
     VortexService,
@@ -26,12 +25,12 @@ export class EditBranchDetailComponent extends NgLifeCycleEvents {
 
     constructor(
         private balloonMsg: BalloonMsgService,
-        vortexService: VortexService
+        vortexService: VortexService,
     ) {
         super();
 
         this.loader = vortexService.createTupleLoader(this, () => {
-            let filt = extend({}, this.filt, branchFilt);
+            let filt = Object.assign({}, this.filt, branchFilt);
             // If we wanted to filter the data we get, we could add this
             // filt["lookupName"] = 'lookupType';
             return filt;

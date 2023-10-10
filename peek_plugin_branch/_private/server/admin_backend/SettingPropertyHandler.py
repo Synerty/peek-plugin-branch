@@ -2,7 +2,10 @@ import logging
 from vortex.sqla_orm.OrmCrudHandler import OrmCrudHandler
 
 from peek_plugin_branch._private.PluginNames import branchFilt
-from peek_plugin_branch._private.storage.Setting import SettingProperty, globalSetting
+from peek_plugin_branch._private.storage.Setting import (
+    SettingProperty,
+    globalSetting,
+)
 
 logger = logging.getLogger(__name__)
 
