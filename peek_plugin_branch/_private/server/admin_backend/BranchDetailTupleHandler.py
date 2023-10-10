@@ -2,7 +2,10 @@ import logging
 
 from vortex.TupleSelector import TupleSelector
 from vortex.handler.TupleDataObservableHandler import TupleDataObservableHandler
-from vortex.sqla_orm.OrmCrudHandler import OrmCrudHandler, OrmCrudHandlerExtension
+from vortex.sqla_orm.OrmCrudHandler import (
+    OrmCrudHandler,
+    OrmCrudHandlerExtension,
+)
 
 from peek_plugin_branch._private.PluginNames import branchFilt
 from peek_plugin_branch.tuples.BranchDetailTuple import BranchDetailTuple
@@ -49,5 +52,7 @@ def makeBranchDetailTupleHandler(tupleObservable, dbSessionCreator):
     )
 
     logger.debug("Started")
-    handler.addExtension(BranchDetailTuple, __ExtUpdateObservable(tupleObservable))
+    handler.addExtension(
+        BranchDetailTuple, __ExtUpdateObservable(tupleObservable)
+    )
     return handler

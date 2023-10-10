@@ -23,6 +23,7 @@ def makeTupleDataObservableHandler(ormSessionCreator):
 
     # Register TupleProviders here
     tupleObservable.addTupleProvider(
-        BranchDetailTuple.tupleName(), BranchDetailTupleProvider(ormSessionCreator)
+        BranchDetailTuple.tupleName(),
+        BranchDetailTupleProvider(ormSessionCreator),
     )
     return tupleObservable

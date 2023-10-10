@@ -7,7 +7,9 @@ from vortex.Payload import Payload
 from vortex.TupleSelector import TupleSelector
 from vortex.handler.TupleDataObservableHandler import TuplesProviderABC
 
-from peek_plugin_branch._private.storage.BranchDetailTable import BranchDetailTable
+from peek_plugin_branch._private.storage.BranchDetailTable import (
+    BranchDetailTable,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +35,9 @@ class BranchDetailTupleProvider(TuplesProviderABC):
             items = [o.toTuple() for o in ormItems]
 
             # Create the vortex message
-            return Payload(filt, tuples=items).makePayloadEnvelope().toVortexMsg()
+            return (
+                Payload(filt, tuples=items).makePayloadEnvelope().toVortexMsg()
+            )
 
         finally:
             session.close()

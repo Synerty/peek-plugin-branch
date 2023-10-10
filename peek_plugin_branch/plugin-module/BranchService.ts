@@ -41,7 +41,7 @@ export class BranchService extends NgLifeCycleEvents {
 
     getBranch(
         modelSetKey: string,
-        key: string
+        key: string,
     ): Promise<BranchDetailTuple | null> {
         let ts = new TupleSelector(BranchDetailTuple.tupleName, {
             modelSetKey: modelSetKey,

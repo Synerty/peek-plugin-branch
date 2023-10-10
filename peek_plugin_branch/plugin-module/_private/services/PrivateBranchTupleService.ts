@@ -30,7 +30,7 @@ export function tupleOfflineStorageNameServiceFactory() {
 export function tupleActionPushNameServiceFactory() {
     return new TupleActionPushNameService(
         branchActionProcessorName,
-        branchFilt
+        branchFilt,
     );
 }
 
@@ -47,12 +47,12 @@ export class PrivateBranchTupleService {
         storageFactory: TupleStorageFactoryService,
         vortexService: VortexService,
         vortexStatusService: VortexStatusService,
-        actionSingleton: TupleActionPushOfflineSingletonService
+        actionSingleton: TupleActionPushOfflineSingletonService,
     ) {
         // Create the offline storage
         this.offlineStorage = new TupleOfflineStorageService(
             storageFactory,
-            tupleOfflineStorageNameServiceFactory()
+            tupleOfflineStorageNameServiceFactory(),
         );
 
         // // Online Actions
@@ -67,7 +67,7 @@ export class PrivateBranchTupleService {
             tupleActionPushNameServiceFactory(),
             vortexService,
             vortexStatusService,
-            actionSingleton
+            actionSingleton,
         );
 
         // Offline Tuple Data Observer
@@ -76,7 +76,7 @@ export class PrivateBranchTupleService {
             vortexService,
             vortexStatusService,
             observerName,
-            this.offlineStorage
+            this.offlineStorage,
         );
 
         // // Online Tuple Data Observer

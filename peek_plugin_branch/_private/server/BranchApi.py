@@ -1,4 +1,6 @@
-from peek_plugin_branch._private.server.controller.MainController import MainController
+from peek_plugin_branch._private.server.controller.MainController import (
+    MainController,
+)
 from peek_plugin_branch.server.BranchApiABC import BranchApiABC
 
 

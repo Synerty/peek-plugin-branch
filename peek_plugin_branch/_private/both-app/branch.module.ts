@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Route, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { NzIconModule } from "ng-zorro-antd/icon";
@@ -8,7 +8,7 @@ import { BranchComponent } from "./branch.component";
 import {
     branchFilt,
     branchObservableName,
-    branchTupleOfflineServiceName
+    branchTupleOfflineServiceName,
 } from "@peek/peek_plugin_branch/_private/PluginNames";
 import {
     TupleActionPushNameService,
@@ -26,7 +26,7 @@ import { branchActionProcessorName } from "@peek/peek_plugin_branch/_private";
 export function tupleActionPushNameServiceFactory() {
     return new TupleActionPushNameService(
         branchActionProcessorName,
-        branchFilt
+        branchFilt,
     );
 }
 

@@ -1,11 +1,15 @@
 import logging
 
-from peek_plugin_base.server.PluginLogicEntryHookABC import PluginLogicEntryHookABC
+from peek_plugin_base.server.PluginLogicEntryHookABC import (
+    PluginLogicEntryHookABC,
+)
 from peek_plugin_base.server.PluginServerStorageEntryHookABC import (
     PluginServerStorageEntryHookABC,
 )
 from peek_plugin_branch._private.storage import DeclarativeBase
-from peek_plugin_branch._private.storage.DeclarativeBase import loadStorageTuples
+from peek_plugin_branch._private.storage.DeclarativeBase import (
+    loadStorageTuples,
+)
 from peek_plugin_branch._private.tuples import loadPrivateTuples
 from peek_plugin_branch.tuples import loadPublicTuples
 from .BranchApi import BranchApi
@@ -19,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 class LogicEntryHook(PluginLogicEntryHookABC, PluginServerStorageEntryHookABC):
     def __init__(self, *args, **kwargs):
-        """" Constructor """
+        """ " Constructor"""
         # Call the base classes constructor
         PluginLogicEntryHookABC.__init__(self, *args, **kwargs)
 
@@ -61,11 +65,14 @@ class LogicEntryHook(PluginLogicEntryHookABC, PluginServerStorageEntryHookABC):
         self._loadedObjects.append(tupleObservable)
 
         mainController = MainController(
-            dbSessionCreator=self.dbSessionCreator, tupleObservable=tupleObservable
+            dbSessionCreator=self.dbSessionCreator,
+            tupleObservable=tupleObservable,
         )
 
         self._loadedObjects.append(mainController)
-        self._loadedObjects.append(makeTupleActionProcessorHandler(mainController))
+        self._loadedObjects.append(
+            makeTupleActionProcessorHandler(mainController)
+        )
 
         # Initialise the API object that will be shared with other plugins
         self._api = BranchApi(mainController)
