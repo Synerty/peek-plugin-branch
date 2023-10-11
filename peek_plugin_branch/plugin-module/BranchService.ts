@@ -14,11 +14,24 @@ export class BranchService extends NgLifeCycleEvents {
         super();
     }
 
-    createBranch(newBranch: BranchDetailTuple): Promise<void> {
+    async createBranch(newBranch: BranchDetailTuple): Promise<Tuple[]> {
         let action = new CreateBranchActionTuple();
         action.branchDetail = newBranch;
-        let promise: any = this.tupleService.offlineAction.pushAction(action);
-        return promise;
+
+        const tupleSelector = new TupleSelector(BranchDetailTuple.tupleName, {
+            modelSetKey: newBranch.modelSetKey,
+        });
+
+        const branches = await this.branches(newBranch.modelSetKey);
+        branches.push(newBranch);
+
+        this.tupleService.offlineObserver.updateOfflineState(
+            tupleSelector,
+            branches
+        );
+
+        // Then tell the server.
+        return await this.tupleService.offlineAction.pushAction(action);
     }
 
     branches(modelSetKey: string): Promise<BranchDetailTuple[]> {
