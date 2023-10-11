@@ -1,5 +1,4 @@
-import { NgLifeCycleEvents, TupleSelector } from "@synerty/vortexjs";
-import { branchTuplePrefix } from "./_private/PluginNames";
+import { NgLifeCycleEvents, Tuple, TupleSelector } from "@synerty/vortexjs";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { BranchDetailTuple } from "./BranchDetailTuple";
@@ -8,10 +7,11 @@ import { CreateBranchActionTuple } from "./_private";
 
 @Injectable()
 export class BranchService extends NgLifeCycleEvents {
-    public static readonly tupleName = branchTuplePrefix + "BranchDetailTable";
-
     constructor(private tupleService: PrivateBranchTupleService) {
         super();
+
+        // See peek_plugin_diagram, PrivateDiagramOfflineCacherService.ts
+        // for offline caching support
     }
 
     async createBranch(newBranch: BranchDetailTuple): Promise<Tuple[]> {
