@@ -1,5 +1,4 @@
-import { NgLifeCycleEvents, TupleSelector } from "@synerty/vortexjs";
-import { branchTuplePrefix } from "./_private/PluginNames";
+import { NgLifeCycleEvents, Tuple, TupleSelector } from "@synerty/vortexjs";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { BranchDetailTuple } from "./BranchDetailTuple";
@@ -8,17 +7,31 @@ import { CreateBranchActionTuple } from "./_private";
 
 @Injectable()
 export class BranchService extends NgLifeCycleEvents {
-    public static readonly tupleName = branchTuplePrefix + "BranchDetailTable";
-
     constructor(private tupleService: PrivateBranchTupleService) {
         super();
+
+        // See peek_plugin_diagram, PrivateDiagramOfflineCacherService.ts
+        // for offline caching support
     }
 
-    createBranch(newBranch: BranchDetailTuple): Promise<void> {
+    async createBranch(newBranch: BranchDetailTuple): Promise<Tuple[]> {
         let action = new CreateBranchActionTuple();
         action.branchDetail = newBranch;
-        let promise: any = this.tupleService.offlineAction.pushAction(action);
-        return promise;
+
+        const tupleSelector = new TupleSelector(BranchDetailTuple.tupleName, {
+            modelSetKey: newBranch.modelSetKey,
+        });
+
+        const branches = await this.branches(newBranch.modelSetKey);
+        branches.push(newBranch);
+
+        this.tupleService.offlineObserver.updateOfflineState(
+            tupleSelector,
+            branches
+        );
+
+        // Then tell the server.
+        return await this.tupleService.offlineAction.pushAction(action);
     }
 
     branches(modelSetKey: string): Promise<BranchDetailTuple[]> {
